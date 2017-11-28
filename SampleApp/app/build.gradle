@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    jar{
+        baseName = 'tests_application'
+        version = '0.1.0'
+    }
 
     testOptions {
         unitTests {

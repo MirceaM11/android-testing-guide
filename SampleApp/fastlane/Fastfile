@@ -8,7 +8,10 @@ platform :android do
 
         puts "alpha lane building with gradle..."
         gradle(task: "clean")
-        gradle(task: "assemble")
+        gradle(
+            task: "assemble",
+            build_type: "Release"
+            )
 
     end
 end
