@@ -7,10 +7,12 @@ platform :android do
     lane :alpha do |options|
 
         puts "alpha lane building with gradle..."
+        puts @project_path
         gradle(task: "clean")
         gradle(
             task: "assemble",
-            build_type: "Release"
+            build_type: "Release",
+            project_dir: @project_path
             )
 
     end
