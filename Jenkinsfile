@@ -8,10 +8,9 @@ node("fastlane_Slave"){
     stage("Build app using fastlane+gradle..."){
         sh'''
             pwd
-            echo "Hello!"
+            echo "Hello! From now we are using fastlane!!"
+            mkdir fastlane
+            fastlane puts "Hellow from fastlane"
         '''
-        fastlane init
-
-    
     }
 }
