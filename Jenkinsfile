@@ -15,6 +15,7 @@ node("fastlane_Slave"){
             echo $PATH
             which fastlane
             ls -la
+            export ANDROID_HOME=/Users/admin/Library/Android/sdk
             echo $ANDROID_HOME
             cd SampleApp
             echo "running alpha lane"
