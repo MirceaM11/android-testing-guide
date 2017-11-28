@@ -1,31 +1,30 @@
 node("fastlane_Slave"){
     
-    stage("Before checkout clean workspace"){
+    stage("Before checkout clean workspace."){
         cleanWs()
     }
 
-    stage("Checkout from git..."){
+    stage("Checkout from git."){
         checkout scm;
     }
 
-    stage("Build app using fastlane+gradle..."){
+    stage("Build app using fastlane+gradle."){
         sh'''
             pwd
             echo "Hello! From now we are using fastlane!!"
             echo $PATH
             which fastlane
-            fastlane env
             ls -la
             cd SampleApp
         '''
     }
-    stage("Tests will be done here..."){
+    stage("Tests will be done here."){
         sh'''
-            echo "tests will be run here."
+            echo "tests will run here."
         '''
     }
     
-    stage("Delete workspace after work is done..."){
+    stage("Delete workspace after work is done."){
         cleanWs()
     }
 }
