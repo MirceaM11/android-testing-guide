@@ -28,8 +28,9 @@ node("fastlane_Slave"){
             echo "tests will run here."
         '''
     }
-    
+    /* 
     stage("Delete workspace after work is done."){
         cleanWs()
     }
+    */
 }
