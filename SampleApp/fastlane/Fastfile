@@ -1,0 +1,14 @@
+fastlane_version "2.66.2"
+
+default_platform :android
+
+platform :android do
+
+    lane :alpha do |options|
+
+        puts "alpha lane building with gradle..."
+        gradle(task: "clean")
+        gradle(task: "assemble")
+
+    end
+end

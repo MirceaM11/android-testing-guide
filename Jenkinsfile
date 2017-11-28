@@ -11,11 +11,13 @@ node("fastlane_Slave"){
     stage("Build app using fastlane+gradle."){
         sh'''
             pwd
-            echo "Hello! From now we are using fastlane!!"
+            echo "Hello! From now we are using fastlane!"
             echo $PATH
             which fastlane
             ls -la
-            cd SampleApp
+            echo "running beta lane"
+            fastlane beta
+            echo "beta lane has run correctly, moving on..."
         '''
     }
     stage("Tests will be done here."){
