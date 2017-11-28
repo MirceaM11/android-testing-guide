@@ -10,7 +10,7 @@ node("fastlane_Slave"){
             pwd
             echo "Hello!"
         '''
-        fastlane puts "this message is shown using fastlane";
+        fastlane init
 
     
     }
