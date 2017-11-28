@@ -15,6 +15,7 @@ node("fastlane_Slave"){
             echo $PATH
             which fastlane
             ls -la
+            cd SampleApp
             echo "running alpha lane"
             fastlane aplha 
             echo "alpha lane has run correctly, moving on..."
