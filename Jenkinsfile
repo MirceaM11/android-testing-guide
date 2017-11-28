@@ -15,9 +15,9 @@ node("fastlane_Slave"){
             echo $PATH
             which fastlane
             ls -la
-            echo "running beta lane"
-            fastlane beta
-            echo "beta lane has run correctly, moving on..."
+            echo "running alpha lane"
+            fastlane aplha 
+            echo "alpha lane has run correctly, moving on..."
         '''
     }
     stage("Tests will be done here."){
