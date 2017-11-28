@@ -12,9 +12,11 @@ node("fastlane_Slave"){
         sh'''
             pwd
             echo "Hello! From now we are using fastlane!!"
+            echot $PATH
+            which fastlane
+            fastlane env
             ls -la
             cd SampleApp
-            fastlane init 
         '''
     }
     stage("Tests will be done here..."){
