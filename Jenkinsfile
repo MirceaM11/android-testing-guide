@@ -17,7 +17,7 @@ node("fastlane_Slave"){
             ls -la
             cd SampleApp
             echo "running alpha lane"
-            fastlane aplha 
+            fastlane alpha 
             echo "alpha lane has run correctly, moving on..."
         '''
     }
