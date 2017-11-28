@@ -10,7 +10,6 @@ node("fastlane_Slave"){
             pwd
             echo "Hello! From now we are using fastlane!!"
             mkdir fastlane
-            fastlane puts "Hello from fastlane!"
             ls -la
         '''
         deleteDir()
