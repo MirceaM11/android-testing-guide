@@ -12,7 +12,7 @@ node("fastlane_Slave"){
         sh'''
             pwd
             echo "Hello! From now we are using fastlane!!"
-            echot $PATH
+            echo $PATH
             which fastlane
             fastlane env
             ls -la
