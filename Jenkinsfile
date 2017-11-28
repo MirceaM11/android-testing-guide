@@ -13,6 +13,8 @@ node("fastlane_Slave"){
             pwd
             echo "Hello! From now we are using fastlane!!"
             ls -la
+            cd SampleApp
+            fastlane init 
         '''
     }
     stage("Tests will be done here..."){
