@@ -1,6 +1,9 @@
 node("fastlane_Slave"){
     
-    
+    stage("Before checkout clean workspace"){
+        cleanWs()
+    }
+
     stage("Checkout from git..."){
         checkout scm;
     }
@@ -9,9 +12,16 @@ node("fastlane_Slave"){
         sh'''
             pwd
             echo "Hello! From now we are using fastlane!!"
-            mkdir fastlane
             ls -la
         '''
-        deleteDir()
+    }
+    stage("Tests will be done here..."){
+        sh'''
+            echo "tests will be run here."
+        '''
+    }
+    
+    stage("Delete workspace after work is done..."){
+        cleanWs()
     }
 }
