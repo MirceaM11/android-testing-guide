@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'java'
 
 android {
     compileSdkVersion 27
@@ -16,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    jar{
+    jar {
         baseName = 'tests_application'
         version = '0.1.0'
     }
