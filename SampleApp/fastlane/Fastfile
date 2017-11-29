@@ -9,6 +9,7 @@ platform :android do
         puts "alpha lane building with gradle..."
         puts @project_path
         gradle(task: "clean")
+        gradle(task: "check")
         gradle(
             task: "assemble",
             build_type: "Release",
