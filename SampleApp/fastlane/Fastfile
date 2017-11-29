@@ -12,7 +12,7 @@ platform :android do
         gradle(task: "check")
         gradle(
             task: "assemble",
-            build_type: "Release",
+            build_type: "Debug",
             project_dir: @project_path
             )
 
