@@ -31,7 +31,9 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker pull tracer0tong/android-emulator:latest
             sudo /usr/local/bin/docker images
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
-            sudo docker ps
+            sudo /usr/local/bin/docker ps
+            adb devices -l 
+
         '''
     }
     stage("Tests will be done here."){
