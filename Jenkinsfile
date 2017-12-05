@@ -25,9 +25,11 @@ node("fastlane_Slave"){
    } 
     stage("Docker emulator and app installation"){    
         sh'''    
-            sudo su
             cd /Users/admin/workspace/workspace
-            echo "pulling image from git..."
+            echo "pull docker image..."
+            docker pull tracer0tong/android-emulator:latest
+            docker images
+
         '''
     }
     stage("Tests will be done here."){
