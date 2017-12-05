@@ -25,7 +25,9 @@ node("fastlane_Slave"){
    } 
     stage("Docker emulator and app installation"){    
         sh'''    
+            
             cd /Users/admin/workspace/workspace
+            export PATH=$PATH:/usr/local/bin/docker
             echo "pull docker image..."
             docker pull tracer0tong/android-emulator:latest
             docker images
