@@ -19,10 +19,23 @@ node("fastlane_Slave"){
             echo $ANDROID_HOME
             cd SampleApp
             echo "running alpha lane"
-            fastlane alpha 
+            fastlane alpha
             echo "alpha lane has run correctly, moving on..."
+    
+    stage("Docker emulator and app installation")    
+        sh'''    
+            cd /Users/admin/workspace/workspace/
+            mkdir dockerEmulator
+            cd dockerImageFromGit
+            echo "pulling image from git..."
+            git clone https://github.com/tracer0tong/android-emulator.git
+            make run 
+            make ports
+            docker images
+            adb devices -l
+
         '''
-    }
+    
     stage("Tests will be done here."){
         sh'''
             echo "tests will run here."
