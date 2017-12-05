@@ -29,6 +29,7 @@ node("fastlane_Slave"){
             cd /Users/admin/workspace/workspace
             export PATH=$PATH:/usr/local/bin/docker
             echo "pull docker image..."
+            which docker
             docker pull tracer0tong/android-emulator:latest
             docker images
 
