@@ -25,7 +25,7 @@ node("fastlane_Slave"){
     stage("Docker emulator and app installation"){    
         sh'''    
             sudo su
-            cd /Users/admin/workspace/workspace/
+            cd /Users/admin/workspace/workspace
             echo "pulling image from git..."
             git clone https://github.com/tracer0tong/android-emulator.git android-emulator
             cd android-emulator
