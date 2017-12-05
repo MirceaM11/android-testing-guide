@@ -21,7 +21,7 @@ node("fastlane_Slave"){
             echo "running alpha lane"
             fastlane alpha
             echo "alpha lane has run correctly, moving on..."
-    
+   } 
     stage("Docker emulator and app installation"){    
         sh'''    
             cd /Users/admin/workspace/workspace/
