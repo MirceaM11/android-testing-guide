@@ -30,7 +30,8 @@ node("fastlane_Slave"){
             echo "pull docker image..."
             sudo /usr/local/bin/docker pull tracer0tong/android-emulator:latest
             sudo /usr/local/bin/docker images
-
+            sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
+            sudo docker ps
         '''
     }
     stage("Tests will be done here."){
