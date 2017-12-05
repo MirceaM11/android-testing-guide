@@ -32,7 +32,7 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker images
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
             sudo /usr/local/bin/docker ps
-            adb devices -l 
+            sudo adb devices -l 
 
         '''
     }
