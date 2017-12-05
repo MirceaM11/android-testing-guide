@@ -26,15 +26,13 @@ node("fastlane_Slave"){
         sh'''    
             sudo su
             cd /Users/admin/workspace/workspace/
-            mkdir androidEmulator
-            cd androidEmulator
             echo "pulling image from git..."
-            git clone https://github.com/tracer0tong/android-emulator.git
+            git clone https://github.com/tracer0tong/android-emulator.git android-emulator
+            cd android-emulator
             make run 
             make ports
             docker images
             adb devices -l
-
         '''
     }
     stage("Tests will be done here."){
