@@ -22,7 +22,7 @@ node("fastlane_Slave"){
             fastlane alpha
             echo "alpha lane has run correctly, moving on..."
     
-    stage("Docker emulator and app installation")    
+    stage("Docker emulator and app installation"){    
         sh'''    
             cd /Users/admin/workspace/workspace/
             mkdir dockerEmulator
@@ -35,7 +35,7 @@ node("fastlane_Slave"){
             adb devices -l
 
         '''
-    
+    }
     stage("Tests will be done here."){
         sh'''
             echo "tests will run here."
