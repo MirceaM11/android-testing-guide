@@ -35,7 +35,7 @@ node("fastlane_Slave"){
             echo $containerID
             adbport=$(sudo /usr/local/bin/docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
             sudo /usr/local/bin/docker ps
-            sudo /Users/admin/Library/Android/sdk/platform-tools/adb connect 0.0.0.0:$adbport
+            sudo /Users/admin/Library/Android/sdk/platform-tools/adb -s connect 0.0.0.0:$adbport
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb -s 0.0.0.0:$adbport install /Users/admin/workspace/workspace/android_fastPipe/SampleApp/app/build/outputs/apk/debug/app-debug.apk   
             sudo /usr/local/bin/docker kill $containerID
