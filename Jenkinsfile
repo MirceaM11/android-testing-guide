@@ -36,7 +36,7 @@ node("fastlane_Slave"){
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
             
             sudo /usr/local/bin/docker kill $containerID
-            sudo /usr/local/bin/docker rm $(docker ps -a -q)
+            //sudo /usr/local/bin/docker rm $(docker ps -a -q)
 
         '''
     }
