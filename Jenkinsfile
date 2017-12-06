@@ -33,6 +33,7 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
             containerID=$(sudo /usr/local/bin/docker ps | awk 'NR == 2 {print $1}')
             echo $containerID
+            sudo /Users/admin/Library/Android/sdk/platform-tools/adb connect 0.0.0.0:32867
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
             
             sudo /usr/local/bin/docker kill $containerID
