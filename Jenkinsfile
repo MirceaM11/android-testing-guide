@@ -33,6 +33,7 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
             containerID=$(sudo /usr/local/bin/docker ps | awk 'NR == 2 {print $1}')
             echo $containerID
+            sudo /usr/local/bin/docker ps
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb connect 0.0.0.0:32867
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb -s 0.0.0.0:32867 install /Users/admin/workspace/workspace/android_fastPipe/SampleApp/app/build/outputs/apk/debug/app-debug.apk   
