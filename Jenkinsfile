@@ -31,9 +31,6 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker pull tracer0tong/android-emulator:latest
             sudo /usr/local/bin/docker images
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
-            pwd 
-            cd /Users/admin/workspace/workspace
-            touch containerIDfile
             containerID=$(sudo /usr/local/bin/docker ps | awk 'NR == 2 {print $1}')
             echo $containerID
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
