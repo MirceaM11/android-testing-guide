@@ -31,7 +31,7 @@ node("fastlane_Slave"){
             sudo /usr/local/bin/docker pull tracer0tong/android-emulator:latest
             sudo /usr/local/bin/docker images
             sudo /usr/local/bin/docker run -d -P tracer0tong/android-emulator:latest
-            sudo touch containerIDfile
+            touch containerIDfile
             sudo /usr/local/bin/docker ps >> containerIDfile
             containerID=$( awk 'NR == 2 {print $1}' containerIDfile )
             echo $containerID
