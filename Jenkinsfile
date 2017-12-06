@@ -34,13 +34,12 @@ node("fastlane_Slave"){
             pwd 
             cd /Users/admin/workspace/workspace
             touch containerIDfile
-            sudo /usr/local/bin/docker ps >> containerIDfile
-            containerID=$( awk 'NR == 2 {print $1}' containerIDfile )
+            containerID=$(sudo /usr/local/bin/docker ps | awk 'NR == 2 {print $1}')
             echo $containerID
             sudo /Users/admin/Library/Android/sdk/platform-tools/adb devices -l
             
             sudo /usr/local/bin/docker kill $containerID
-    
+            sudo /usr/local/bin/docker rm $(docker ps -a -q)
 
         '''
     }
