@@ -23,19 +23,25 @@ node("master"){
     } 
     stage("Docker emulator and app installation"){    
         sh'''
-			docker ps
+			export adb=/opt/platform-tools/adb
+			echo $adb
+			docker pull tracer0tong/android-emulator:latest
 			docker run -d -P tracer0tong/android-emulator:latest
-			docker images
 			containerID=$(docker ps | awk 'NR == 2 {print $1}')
 			echo $containerID
-			docker kill $containerID
+			docker ps
+			adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
+            $adb connect 0.0.0.0:$adbport
+            $adb devices -l
         '''
     }
     stage("Tests will be done here..."){
         sh'''
-            echo "tests will run here."
+			containerID=$(docker ps | awk 'NR == 2 {print $1}')
+			docker kill $containerID
         '''
     }
+	
     /* 
     stage("Delete workspace after work is done."){
         cleanWs()
