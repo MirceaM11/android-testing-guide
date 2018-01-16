@@ -32,11 +32,13 @@ node("master"){
 			docker ps
 			adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
             $adb connect 0.0.0.0:$adbport
-            $adb devices -l
         '''
     }
     stage("Tests will be done here..."){
         sh'''
+			cd /tmp/android_tests/SampleApp
+			./gradlew connectedCheck
+			./gradlew connectedAndroidTest
 			containerID=$(docker ps | awk 'NR == 2 {print $1}')
 			docker kill $containerID
         '''
