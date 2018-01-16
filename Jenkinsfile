@@ -1,11 +1,12 @@
 node("master"){
 
     stage("Checkout from git..."){
-        pwd()
+        git poll: true, url: 'https://github.com/MirceaM11/android-testing-guide.git' 
         git branch: 'testbranch1', url: 'https://github.com/MirceaM11/android-testing-guide.git';
+        
     }
 
-    stage("Build app using fastlane+gradle."){
+    stage("Build app using gradle..."){
         sh'''
             echo "This is the the build..."
        '''
@@ -15,7 +16,7 @@ node("master"){
             echo "Emulator start..."
         '''
     }
-    stage("Tests will be done here."){
+    stage("Tests will be done here..."){
         sh'''
             echo "tests will run here."
         '''
