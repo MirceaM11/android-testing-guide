@@ -1,4 +1,4 @@
-node("master`"){
+node("master"){
     
     stage("Before checkout clean workspace."){
         cleanWs()
