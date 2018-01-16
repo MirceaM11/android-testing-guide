@@ -23,7 +23,12 @@ node("master"){
     } 
     stage("Docker emulator and app installation"){    
         sh'''
-            echo "Emulator start..."
+			docker ps
+			docker run -d -P tracer0tong/android-emulator:latest
+			docker images
+			containerID=$(docker ps | awk 'NR == 2 {print $1}')
+			echo $containerID
+			docker kill $containerID
         '''
     }
     stage("Tests will be done here..."){
