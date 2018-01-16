@@ -23,6 +23,7 @@ node("master"){
     } 
     stage("Docker emulator and app installation"){    
         sh'''
+			usermod -aG docker ${USER}
 			docker ps
 			docker run -d -P tracer0tong/android-emulator:latest
 			docker images
