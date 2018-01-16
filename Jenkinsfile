@@ -16,8 +16,8 @@ node("master"){
     stage("Build app using gradlew..."){
         sh'''
             cd /tmp/android_tests/SampleApp
-            ./gradlew assembleDebug 
-            ./gradlew assembleDebugTest
+            ./gradlew assembleDebug --stacktrace 
+            ./gradlew assembleDebugTest --stacktrace
        '''
     } 
     stage("Docker emulator and app installation"){    
