@@ -8,8 +8,10 @@ node("master"){
 
     }
     stage("Preparing the environment..."){
-        export ANDROID_HOME=/opt
-        export PATH=$PATH:$ANDROID_HOME/tools
+        sh'''
+            export ANDROID_HOME=/opt
+            export PATH=$PATH:$ANDROID_HOME/tools
+        '''
     }
     stage("Build app using gradlew..."){
         sh'''
