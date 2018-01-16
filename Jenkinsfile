@@ -1,9 +1,11 @@
 node("master"){
 
     stage("Checkout from git..."){
-        git poll: true, url: 'https://github.com/MirceaM11/android-testing-guide.git' 
-        //git branch: 'testbranch1', url: 'https://github.com/MirceaM11/android-testing-guide.git';
         
+        ws('/tmp/android_tests/'){
+            git poll: true, url: 'https://github.com/MirceaM11/android-testing-guide.git' 
+        }
+
     }
 
     stage("Build app using gradle..."){
