@@ -22,15 +22,9 @@ node("master"){
        '''
     } 
     stage("Docker emulator and app installation"){    
-        sh'''
-			usermod -aG docker ${USER}
-			docker ps
-			docker run -d -P tracer0tong/android-emulator:latest
-			docker images
-			containerID=$(docker ps | awk 'NR == 2 {print $1}')
-			echo $containerID
-			docker kill $containerID
-        '''
+		agent{
+			docker { image 'tracer0tong/android-emulator:latest' }
+		}
     }
     stage("Tests will be done here..."){
         sh'''
