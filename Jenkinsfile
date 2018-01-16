@@ -44,6 +44,7 @@ node("master"){
 			containerID=$(docker ps | awk 'NR == 2 {print $1}')
 			docker kill $containerID
         '''
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: '/tmp/android_tests/SampleApp/app/build/reports/androidTests/connected', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
     }
 	
     /* 
