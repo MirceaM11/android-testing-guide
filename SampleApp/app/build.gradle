@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "in.ravidsrk.sample"
         minSdkVersion 19
@@ -9,7 +9,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+   	multiDexEnabled true
+	}
     buildTypes {
         release {
             minifyEnabled false
@@ -51,7 +52,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-accessibility:3.0.1'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-accessibility:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-web:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
