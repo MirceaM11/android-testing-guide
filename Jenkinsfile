@@ -36,6 +36,8 @@ node("master"){
     }
     stage("Tests will be done here..."){
         sh'''
+			export ANDROID_HOME=/opt
+            export PATH=$PATH:$ANDROID_HOME/tools
 			cd /tmp/android_tests/SampleApp
 			./gradlew connectedCheck
 			./gradlew connectedAndroidTest
