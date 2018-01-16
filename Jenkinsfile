@@ -11,7 +11,7 @@ node("master"){
         sh'''
             export ANDROID_HOME=/opt
             export PATH=$PATH:$ANDROID_HOME/tools
-            sudo chmod -R 777 /tmp/android_test/
+            chmod -R 777 /tmp/android_test/
         '''
     }
     stage("Build app using gradlew..."){
