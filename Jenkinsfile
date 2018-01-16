@@ -9,12 +9,13 @@ node("master"){
     }
     stage("Preparing the environment..."){
         sh'''
-            export ANDROID_HOME=/opt
-            export PATH=$PATH:$ANDROID_HOME/tools
+            
         '''
     }
     stage("Build app using gradlew..."){
         sh'''
+            export ANDROID_HOME=/opt
+            export PATH=$PATH:$ANDROID_HOME/tools
             cd /tmp/android_tests/SampleApp
             ./gradlew assembleDebug --stacktrace 
             ./gradlew assembleDebugTest --stacktrace
