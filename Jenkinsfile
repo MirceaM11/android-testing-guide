@@ -39,8 +39,8 @@ node("master"){
 			export ANDROID_HOME=/opt
             export PATH=$PATH:$ANDROID_HOME/tools
 			cd /tmp/android_tests/SampleApp
-			./gradlew connectedCheck
-			./gradlew connectedAndroidTest
+			./gradlew test
+			./gradlew connectedAndroidTest --stacktrace
 			containerID=$(docker ps | awk 'NR == 2 {print $1}')
 			docker kill $containerID
         '''
