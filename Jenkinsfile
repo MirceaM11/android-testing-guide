@@ -1,11 +1,8 @@
 node("master"){
-    
-    stage("Before checkout clean workspace."){
-        cleanWs()
-    }
 
-    stage("Checkout from git."){
-        checkout scm;
+    stage("Checkout from git..."){
+        pwd()
+        git branch: 'testbranch1', url: 'https://github.com/MirceaM11/android-testing-guide.git';
     }
 
     stage("Build app using fastlane+gradle."){
