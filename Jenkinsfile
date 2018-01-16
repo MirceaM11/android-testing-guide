@@ -1,18 +1,23 @@
 node("master"){
 
-    stage("Checkout from git..."){
+    stage("Poll scm..."){
         
         ws('/tmp/android_tests/'){
             git poll: true, url: 'https://github.com/MirceaM11/android-testing-guide.git' 
         }
 
     }
-
-    stage("Build app using gradle..."){
+    stage("Preparing the environment..."){
+        export ANDROID_HOME=/opt
+        export PATH=$PATH:$ANDROID_HOME/tools
+    }
+    stage("Build app using gradlew..."){
         sh'''
-            echo "This is the the build..."
+            cd /tmp/android_tests/SampleApp
+            ./gradlew assembleDebug 
+            ./gradlew assembleDebugTest
        '''
-   } 
+    } 
     stage("Docker emulator and app installation"){    
         sh'''
             echo "Emulator start..."
