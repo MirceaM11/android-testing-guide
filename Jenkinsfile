@@ -18,7 +18,7 @@ node("master"){
             export PATH=$PATH:$ANDROID_HOME/tools
             cd /tmp/android_tests/SampleApp
             ./gradlew assembleDebug --stacktrace 
-            ./gradlew assembleDebugTest --stacktrace
+            ./gradlew assembleAndroidTest --stacktrace
        '''
     } 
     stage("Docker emulator and app installation"){    
