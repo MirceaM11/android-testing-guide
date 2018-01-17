@@ -58,7 +58,7 @@ pipeline {
 		stage("sleep for emulator to come online..."){
 			steps{
 				sh '''
-					def time = params.SLEEP_TIME_IN_SECONDS
+					time = params.SLEEP_TIME_IN_SECONDS
 					echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for emulator to fully come online"
 					sleep time.toInteger()
 				'''
