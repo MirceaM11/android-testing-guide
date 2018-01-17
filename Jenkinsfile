@@ -81,6 +81,7 @@ pipeline {
 				sh'''
 					$adb devices -l
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
+					$adb install /tmp/android_tests/SampleApp/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 					cd /tmp/android_tests/SampleApp
 					./gradlew clean test
 					./gradlew clean connectedAndroidTest --stacktrace
