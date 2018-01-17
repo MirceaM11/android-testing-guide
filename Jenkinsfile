@@ -56,11 +56,9 @@ pipeline {
 			}
 		}
 		stage("sleep for emulator to come online..."){
-			steps{
-				
+					
 					time = params.SLEEP_TIME_IN_SECONDS
 					sleep time.toInteger()
-				}
 		}		
 		
 		stage("connect emulator..."){
