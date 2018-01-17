@@ -76,10 +76,10 @@ pipeline {
 					
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					
-					A=$($adb shell getprop sys.boot_completed | tr -d '\r')
-					while [ "$A" != "1" ]; do
-						sleep 2
-						A=$($adb shell getprop sys.boot_completed | tr -d '\r')
+					A=$($adb shell getprop init.svc.bootanim )
+					while [ "$A" != "running" ]; do
+						sleep 5
+						A=$($adb shell getprop init.svc.bootanim )
 					done
 					
 					$adb shell input keyevent 82
