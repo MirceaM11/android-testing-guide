@@ -79,7 +79,7 @@ pipeline {
 		stage("Tests will be done here..."){
 			steps{
 				sh'''
-					$adb devices -lW
+					$adb devices -l
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					cd /tmp/android_tests/SampleApp
 					./gradlew clean test
