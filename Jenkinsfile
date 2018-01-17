@@ -73,14 +73,9 @@ pipeline {
 					
 					$adb connect 0.0.0.0:$adbport
 					$adb devices -l
-					
+					sleep 10
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
-					
-					A=$($adb shell getprop init.svc.bootanim )
-					while [ "$A" != "running" ]; do
-						sleep 5
-						A=$($adb shell getprop init.svc.bootanim )
-					done
+					$adb devices -l
 					
 					$adb shell input keyevent 82
 					
