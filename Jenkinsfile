@@ -8,11 +8,11 @@ pipeline {
 		PATH="$PATH:$ANDROID_HOME/tools"
 		root="/tmp/android_tests/"
 	}
-	
+	/*
 	parameters{
 	
 	}
-	
+	*/
 	stages {
 	
 		stage("Poll scm..."){
