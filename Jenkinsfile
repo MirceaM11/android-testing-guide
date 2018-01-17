@@ -56,10 +56,13 @@ pipeline {
 			}
 		}
 		stage("sleep for emulator to come online..."){
-		
-				def time = params.SLEEP_TIME_IN_SECONDS
-				echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for emulator to fully come online"
-				sleep time.toInteger()
+			steps{
+				sh '''
+					def time = params.SLEEP_TIME_IN_SECONDS
+					echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for emulator to fully come online"
+					sleep time.toInteger()
+				'''
+			}
 		}		
 		
 		stage("connect emulator..."){
