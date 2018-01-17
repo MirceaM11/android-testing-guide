@@ -64,13 +64,15 @@ pipeline {
 		stage("connect emulator..."){
 			steps{
 				sh'''
-					$adb devices -l
-					$adb shell getprop init.svc.bootanim
+					
+					
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					echo $containerID
 					docker ps
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
 					$adb connect 0.0.0.0:$adbport
+					$adb devices -l
+					//$adb shell getprop init.svc.bootanim
 				'''
 				}
 			}
