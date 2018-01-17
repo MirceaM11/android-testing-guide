@@ -61,28 +61,21 @@ pipeline {
 					sleep params.SLEEP_TIME_IN_SECONDS.toInteger()
 		}		}
 		
-		stage("connect emulator..."){
+
+		stage("Connect and test..."){
 			steps{
 				sh'''
-					
-					
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					echo $containerID
 					docker ps
+					
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
+					
 					$adb connect 0.0.0.0:$adbport
-					$adb devices
-				'''
-				}
-			}
-		
-		stage("Tests will be done here..."){
-			steps{
-				sh'''
 					$adb devices -l
+					
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					
-					$adb wait-for-device
 					A=$($adb shell getprop sys.boot_completed | tr -d '\r')
 					while [ "$A" != "1" ]; do
 						sleep 2
