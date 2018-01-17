@@ -44,7 +44,7 @@ pipeline {
 				'''
 			}
 		} 
-		stage("Docker emulator and app installation"){  
+		stage("Docker emulator start..."){  
 			steps{
 				sh'''
 					
@@ -53,11 +53,17 @@ pipeline {
 					
 				'''
 				
-				
+			}
+		}
+		stage("sleep for emulator to come online..."){
+		
 				def time = params.SLEEP_TIME_IN_SECONDS
 				echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for emulator to fully come online"
 				sleep time.toInteger()
-				
+		}		
+		
+		stage("connect emulator..."){
+			steps{
 				sh'''
 					$adb devices -l
 					$adb shell getprop init.svc.bootanim
@@ -67,6 +73,7 @@ pipeline {
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
 					$adb connect 0.0.0.0:$adbport
 				'''
+				}
 			}
 		}
 		
