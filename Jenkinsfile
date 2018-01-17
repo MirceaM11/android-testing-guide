@@ -72,7 +72,7 @@ pipeline {
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
 					$adb connect 0.0.0.0:$adbport
 					$adb devices -l
-					//$adb shell getprop init.svc.bootanim
+					/*$adb shell getprop init.svc.bootanim*/
 				'''
 				}
 			}
