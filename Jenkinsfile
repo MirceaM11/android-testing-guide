@@ -75,7 +75,6 @@ pipeline {
 				'''
 				}
 			}
-		}
 		
 		stage("Tests will be done here..."){
 			steps{
@@ -92,3 +91,4 @@ pipeline {
 		}
 	}
 }
+
