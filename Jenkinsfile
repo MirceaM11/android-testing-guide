@@ -81,7 +81,18 @@ pipeline {
 				sh'''
 					$adb devices -l
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
+					
+					$adb wait-for-device
+					A=$($adb shell getprop sys.boot_completed | tr -d '\r')
+					while [ "$A" != "1" ]; do
+						sleep 2
+						A=$($adb shell getprop sys.boot_completed | tr -d '\r')
+					done
+					
+					$adb shell input keyevent 82
+					
 					$adb install /tmp/android_tests/SampleApp/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+					
 					cd /tmp/android_tests/SampleApp
 					./gradlew clean test
 					./gradlew clean connectedAndroidTest --stacktrace
