@@ -35,8 +35,7 @@ pipeline {
 		stage("Build app using gradlew..."){
 			steps{
 				sh'''
-					//export ANDROID_HOME=/opt
-					//export PATH=$PATH:$ANDROID_HOME/tools
+					
 					cd /tmp/android_tests/SampleApp
 					./gradlew assembleDebug --stacktrace 
 					./gradlew assembleAndroidTest --stacktrace
@@ -46,8 +45,7 @@ pipeline {
 		stage("Docker emulator and app installation"){  
 			steps{
 				sh'''
-					//export adb=/opt/platform-tools/adb
-					//echo $adb
+					
 					docker pull tracer0tong/android-emulator:latest
 					docker run -d -P tracer0tong/android-emulator:latest
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
@@ -62,8 +60,6 @@ pipeline {
 		stage("Tests will be done here..."){
 			steps{
 				sh'''
-					//export ANDROID_HOME=/opt
-					//export PATH=$PATH:$ANDROID_HOME/tools
 					cd /tmp/android_tests/SampleApp
 					./gradlew test
 					./gradlew connectedAndroidTest --stacktrace
