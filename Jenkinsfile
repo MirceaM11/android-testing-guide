@@ -8,11 +8,11 @@ pipeline {
 		PATH="$PATH:$ANDROID_HOME/tools"
 		root="/tmp/android_tests/"
 	}
-	/*
-	parameters{
 	
+	parameters{
+		string(defaultValue: "120", description: 'how much time to sleep before the emu starts', name: 'SLEEP_TIME_IN_SECONDS')
 	}
-	*/
+	
 	stages {
 	
 		stage("Poll scm..."){
@@ -25,6 +25,7 @@ pipeline {
 			}
 
 		}
+		/*
 		stage("Preparing the environment..."){
 			steps{
 				sh'''
@@ -32,13 +33,14 @@ pipeline {
 				'''
 			}
 		}
+		*/
 		stage("Build app using gradlew..."){
 			steps{
 				sh'''
 					
 					cd /tmp/android_tests/SampleApp
-					./gradlew assembleDebug --stacktrace 
-					./gradlew assembleAndroidTest --stacktrace
+					./gradlew clean assembleDebug 
+					./gradlew clean assembleAndroidTest 
 				'''
 			}
 		} 
@@ -48,6 +50,17 @@ pipeline {
 					
 					docker pull tracer0tong/android-emulator:latest
 					docker run -d -P tracer0tong/android-emulator:latest
+					
+				'''
+				
+				
+				def time = params.SLEEP_TIME_IN_SECONDS
+				echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for emulator to fully come online"
+				sleep time.toInteger()
+				
+				sh'''
+					$adb devices -l
+					$adb shell getprop init.svc.bootanim
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					echo $containerID
 					docker ps
@@ -60,10 +73,11 @@ pipeline {
 		stage("Tests will be done here..."){
 			steps{
 				sh'''
-					cd /tmp/android_tests/SampleApp
-					./gradlew test
-					./gradlew connectedAndroidTest --stacktrace
+					$adb devices -lW
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
+					cd /tmp/android_tests/SampleApp
+					./gradlew clean test
+					./gradlew clean connectedAndroidTest --stacktrace
 					docker kill $containerID
 				'''
 				publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: false, reportDir: '/tmp/android_tests/SampleApp/app/build/reports/androidTests/connected', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
