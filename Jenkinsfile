@@ -5,7 +5,7 @@ pipeline {
 	environment{
 		adb="/opt/platform-tools/adb"
 		ANDROID_HOME="/opt"
-		PATH=$PATH:$ANDROID_HOME/tools
+		PATH="$PATH:$ANDROID_HOME/tools"
 		root="/tmp/android_tests/"
 	}
 	
