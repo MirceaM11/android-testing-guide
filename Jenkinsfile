@@ -1,6 +1,6 @@
 pipeline {
 	agent{
-		label 'master'
+		label 'tests_node'
 	}
 	environment{
 		adb="/opt/platform-tools/adb"
@@ -10,7 +10,7 @@ pipeline {
 	}
 	
 	parameters{
-		string(defaultValue: "120", description: 'how much time to sleep before the emu starts', name: 'SLEEP_TIME_IN_SECONDS')
+		string(defaultValue: "30", description: 'how much time to sleep before the emu starts', name: 'SLEEP_TIME_IN_SECONDS')
 	}
 	
 	stages {
@@ -68,17 +68,16 @@ pipeline {
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					echo $containerID
 					docker ps
-					
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
 					
 					$adb connect 0.0.0.0:$adbport
-					$adb devices -l
+					$adb devices
 					sleep 10
+					
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
-					$adb devices -l
 					
+					$adb devices
 					$adb shell input keyevent 82
-					
 					$adb install /tmp/android_tests/SampleApp/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 					
 					cd /tmp/android_tests/SampleApp
