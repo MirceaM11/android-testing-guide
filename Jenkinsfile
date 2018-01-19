@@ -71,12 +71,12 @@ pipeline {
 					adbport=$(docker container port $containerID | grep 5555 | awk -F ':' '{print $2}')
 					
 					$adb connect 0.0.0.0:$adbport
-					$adb devices
-					sleep 10
-					
+					$adb devices -l
+					sleep 40
+
 					containerID=$(docker ps | awk 'NR == 2 {print $1}')
 					
-					$adb devices
+					$adb devices -l
 					$adb shell input keyevent 82
 					$adb install /tmp/android_tests/SampleApp/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 					
